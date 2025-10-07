@@ -6,6 +6,15 @@ using TypeSpec.Http;
 
 namespace OpenAI;
 
+@access(Access.public)
+@usage(Usage.input)
+model FileCollectionOptions {
+  @query @continuationToken after?: string;
+  @query limit?: int32 = 20;
+  @query purpose?: string;
+  ...FileCollectionOrderQueryParameter
+}
+
 alias FileCollectionOrderQueryParameter = {
   @query order?: FileCollectionOrder;
 };
@@ -16,14 +25,4 @@ union FileCollectionOrder {
   Descending: "desc",
 }
 
-@access(Access.public)
-@usage(Usage.input)
-model FileCollectionOptions {
-  ...CollectionAfterQueryParameter,
-  ...CollectionBeforeQueryParameter,
-  ...CollectionLimitQueryParameter,
-  ...FileCollectionOrderQueryParameter,
 
-  /** Only return files with the given purpose. */
-  @query purpose?: string;
-}

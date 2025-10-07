@@ -18,11 +18,10 @@ interface Files {
   @list
   listFiles(
     @header accept: "application/json",
-
-    // TODO: This is just a string in the OpenAPI spec.
-    /** Only return files with the given purpose. */
-    @query purpose?: string,
-   ...ListFilePageQueryParameters
+    @query @continuationToken after?: string;
+    @query limit?: int32 = 20;
+    @query order?: PageOrderOptions;
+    @query purpose?: string;
   ): ListFilesResponse | ErrorResponse;
 
   @post
