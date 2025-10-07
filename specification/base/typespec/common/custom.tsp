@@ -69,6 +69,12 @@ alias CommonPageQueryParameters = {
   ...PageBeforeQueryParameter;
 };
 
+alias ListFilePageQueryParameters = {
+  ...PageAfterQueryParameter;
+  ...PageLimitQueryParameter;
+  ...PageOrderQueryParameter;
+};
+
 alias SseResponseOf<T> = {
   @header("Content-Type") contentType: "text/event-stream";
   @body responseBody: T;

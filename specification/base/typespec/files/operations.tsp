@@ -15,12 +15,14 @@ interface Files {
   @get
   @operationId("listFiles")
   @summary("Returns a list of files that belong to the user's organization.")
+  @list
   listFiles(
     @header accept: "application/json",
 
     // TODO: This is just a string in the OpenAPI spec.
     /** Only return files with the given purpose. */
     @query purpose?: string,
+   ...ListFilePageQueryParameters
   ): ListFilesResponse | ErrorResponse;
 
   @post

@@ -18,7 +18,7 @@ namespace OpenAILibraryPlugin.Visitors;
 public class PaginationVisitor : ScmLibraryVisitor
 {
 
-    private static readonly string[] _paginationParamsToReplace = ["after", "before", "limit", "order", "model", "metadata", "filter"];
+    private static readonly string[] _paginationParamsToReplace = ["after", "before", "limit", "order", "model", "metadata", "filter", "purpose"];
     private static readonly Dictionary<string, string> _paramReplacementMap = new()
     {
         { "after", "AfterId" },
@@ -27,7 +27,8 @@ public class PaginationVisitor : ScmLibraryVisitor
         { "order", "Order" },
         { "model", "Model" },
         { "metadata", "Metadata" },
-        { "filter", "Filter" }
+        { "filter", "Filter" },
+        { "purpose", "Purpose" }
     };
     private static readonly Dictionary<string, (string ReturnType, string OptionsType, string[] ParamsToReplace)> _optionsReplacements = new()
     {
@@ -126,6 +127,14 @@ public class PaginationVisitor : ScmLibraryVisitor
         {
             "GetRunStepsAsync",
             ("RunStep", "RunStepCollectionOptions", _paginationParamsToReplace)
+        },
+        {
+            "GetFiles",
+            ("OpenAIFile", "FileCollectionOptions", _paginationParamsToReplace)
+        },
+        {
+            "GetFilesAsync",
+            ("OpenAIFile", "FileCollectionOptions", _paginationParamsToReplace)
         }
     };
 

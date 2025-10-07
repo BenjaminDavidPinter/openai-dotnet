@@ -30,9 +30,9 @@ model ListFilesResponse {
   // Tool customization: apply the strict 'list' object value instead of open 'string'
   object: "list";
 
-  data: OpenAIFile[];
+  @pageItems data: OpenAIFile[];
   first_id: string;
-  last_id: string;
+  @continuationToken last_id: string;
   has_more: boolean;
 }
 
